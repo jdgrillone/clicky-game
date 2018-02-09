@@ -9,7 +9,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>FFXIV Match Game</Title>
+        <Title>FFXIV Click Game</Title>
+        <div className="card-wrapper">
         {characters.map(character => (
           <CharacterCard
             id={character.id}
@@ -17,6 +18,7 @@ class App extends Component {
             image={character.image}
           />
         ))}
+        </div>
       </Wrapper>
     );
   }
