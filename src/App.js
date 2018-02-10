@@ -16,10 +16,27 @@ class App extends Component {
     characters
   };
 
-  // !!!!NOT WORKING!!!!!
+  // Handles game state
   clickedCharacter = id => {
+    // Save old game state
+    const m = this.state.characters.length;
     const newcharacters = this.state.characters.filter(character => character.id !== id);
-    this.setState({ characters: newcharacters });
+    // Check if there is a new game state
+    if (m === newcharacters.length) {
+      this.gameOver();
+    } else {
+      // Increment Score
+      this.handleIncrement();
+      // Update game state
+      this.setState({ characters: newcharacters });
+    }
+    console.log(this.state.characters);
+  }
+
+  // Game over handler
+  gameOver = () => {
+    this.setState({ count: 0, characters: characters })
+    console.log("Game Over");    
   }
 
   // Handles increment on count state
@@ -30,7 +47,7 @@ class App extends Component {
     }
     // Set new High Score
     else if (this.state.count >= this.state.highscore) {
-      this.setState({ count: this.state.count + 1, highscore: this.state.count + 1})
+      this.setState({ count: this.state.count + 1, highscore: this.state.count + 1 })
     } else {
       this.setState({ count: this.state.count + 1 })
     }
@@ -57,11 +74,10 @@ class App extends Component {
 
   // Function to contain everything for the click event
   clickEvent = (id) => {
-    // Increment
-    this.handleIncrement();
+    // Check & Update game state
+    this.clickedCharacter(id);
     // Re-render DOM to shuffle cards
     ReactDOM.render(<App />, document.getElementById('root'));
-    this.clickedCharacter(id);
   }
 
   render() {
