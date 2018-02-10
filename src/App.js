@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import CharacterCard from "./components/CharacterCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
+import Counter from "./components/Counter";
 import characters from "./characters.json";
 import './App.css';
 import ReactDOM from 'react-dom';
 
 class App extends Component {
+
+  // Setting the initial state of the Counter component
+  state = {
+    count: 0,
+    highscore: 0
+  };
+
+  // Handles increment on count state
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+    if (this.state.highscore < this.state.count) {
+      this.setState({ highscore: this.state.count });
+    }
+  };
 
   // Fisher-Yates shuffle function
   shuffle = function (array) {
@@ -27,8 +42,11 @@ class App extends Component {
     return array;
   }
 
+  // Function to contain everything for the click event
   clickEvent = () => {
-    console.log("A");
+    // Increment
+    this.handleIncrement();
+    // Re-render DOM to shuffle cards
     ReactDOM.render(<App />, document.getElementById('root'));
   }
 
@@ -36,6 +54,9 @@ class App extends Component {
     return (
       <Wrapper>
         <Title>FFXIV Click Game</Title>
+        <Counter
+          count={this.state.count}
+          highscore={this.state.highscore} />
         <div className="card-wrapper">
           {this.shuffle(characters).map(character => (
             <CharacterCard
