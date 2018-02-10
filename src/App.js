@@ -18,9 +18,8 @@ class App extends Component {
 
   // !!!!NOT WORKING!!!!!
   clickedCharacter = id => {
-    console.log(id);
     const newcharacters = this.state.characters.filter(character => character.id !== id);
-    console.log(newcharacters);
+    this.setState({ characters: newcharacters });
   }
 
   // Handles increment on count state
@@ -57,12 +56,12 @@ class App extends Component {
   }
 
   // Function to contain everything for the click event
-  clickEvent = () => {
+  clickEvent = (id) => {
     // Increment
     this.handleIncrement();
     // Re-render DOM to shuffle cards
     ReactDOM.render(<App />, document.getElementById('root'));
-    this.clickedCharacter();
+    this.clickedCharacter(id);
   }
 
   render() {
