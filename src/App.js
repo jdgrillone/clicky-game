@@ -4,6 +4,7 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import characters from "./characters.json";
 import './App.css';
+import ReactDOM from 'react-dom';
 
 class App extends Component {
 
@@ -26,6 +27,11 @@ class App extends Component {
     return array;
   }
 
+  clickEvent = () => {
+    console.log("A");
+    ReactDOM.render(<App />, document.getElementById('root'));
+  }
+
   render() {
     return (
       <Wrapper>
@@ -36,6 +42,7 @@ class App extends Component {
               id={character.id}
               name={character.name}
               image={character.image}
+              clickEvent={this.clickEvent}
             />
           ))}
         </div>
