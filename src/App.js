@@ -18,16 +18,22 @@ class App extends Component {
 
   // !!!!NOT WORKING!!!!!
   clickedCharacter = id => {
-    const characters = this.state.characters.filter(character => character.id !== id);
-    this.setState({ characters });
-    console.log(this);
+    console.log(id);
+    const newcharacters = this.state.characters.filter(character => character.id !== id);
+    console.log(newcharacters);
   }
 
   // Handles increment on count state
   handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-    if (this.state.highscore < this.state.count) {
-      this.setState({ highscore: this.state.count });
+    // Reset
+    if (this.state.count === 12) {
+      this.setState({ count: 0 });
+    }
+    // Set new High Score
+    else if (this.state.count >= this.state.highscore) {
+      this.setState({ count: this.state.count + 1, highscore: this.state.count + 1})
+    } else {
+      this.setState({ count: this.state.count + 1 })
     }
   };
 
