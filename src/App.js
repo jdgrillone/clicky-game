@@ -12,8 +12,16 @@ class App extends Component {
   // Setting the initial state of the Counter component
   state = {
     count: 0,
-    highscore: 0
+    highscore: 0,
+    characters
   };
+
+  // !!!!NOT WORKING!!!!!
+  clickedCharacter = id => {
+    const characters = this.state.characters.filter(character => character.id !== id);
+    this.setState({ characters });
+    console.log(this);
+  }
 
   // Handles increment on count state
   handleIncrement = () => {
@@ -48,6 +56,7 @@ class App extends Component {
     this.handleIncrement();
     // Re-render DOM to shuffle cards
     ReactDOM.render(<App />, document.getElementById('root'));
+    this.clickedCharacter();
   }
 
   render() {
