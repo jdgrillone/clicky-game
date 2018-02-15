@@ -1,3 +1,9 @@
+# Clicky Game
+
+This is a single page application created in React.  The purpose was to build a simple click game.  By clicking on a card, your score is increased and the board is shuffled.
+Clicking on the same card twice will result in restarting the game.  The goal is to click on each individual card only once.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
